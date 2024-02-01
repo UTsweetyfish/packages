@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Index Page</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>
+          Package
+        </th>
+        <th>beige</th>
+        <th>unstable/sid</th>
+      </tr>
+
+      {% for package, versions in packages.items() %}
+      <tr>
+        <td
+        {% if versions.beige and versions.sid %}
+        {% if version_compare(versions.beige, versions.sid) < 0 %}
+        style="background-color: red;"
+        {% elif version_compare(versions.beige, versions.sid) > 0 %}
+        style="background-color: green;"
+        {% endif %}
+        {% endif %}
+        >{{ package }}</td>
+        <td>{{ versions.beige }}</td>
+        <td>{{ versions.sid }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
