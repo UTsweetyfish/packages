@@ -46,3 +46,10 @@ if __name__ == '__main__':
             'packages': {k: v for k, v in raw_data.items() if k in ESSENTIAL},
             'distros': ['beige', 'sid'],
         }))
+    
+    # qt6-*
+    with open('output/index-qt6.html', 'w', encoding='utf-8') as f:
+        f.write(tmpl.render({
+            'packages': {k: v for k, v in raw_data.items() if k.startswith('qt6-')},
+            'distros': ['beige', 'sid'],
+        }))
